@@ -1,20 +1,142 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-    <head>
-        <title>Library</title>
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800">
-        <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/styles.css">
-    </head>
+<head>
+    <title>Library</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <body>
-       
-        <script src="js/jquery.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-    </body>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,800">
+    <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+        
+        <div class="collapse" id="collapseNewBook">
+            <form class="jumbotron">
+                <div class="form-group row">
+                    <label for="inputAuthor" class="col-sm-2 col-form-label">Author</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputAuthor">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputTitle">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputNumberOfPages" class="col-sm-3 col-form-label">Number of pages</label>
+                    <div class="col-sm-2">
+                        <input type="number" class="form-control" id="NumberOfPages" min="20">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Have you read this book?</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                            value="option1">
+                        <label class="form-check-label" for="inlineRadio1">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                            value="option2">
+                        <label class="form-check-label" for="inlineRadio2">No</label>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-sm-10 row">
+                        <button type="submit" class="col-3 btn btn-success mr-3">Submit</button>
+                        <button type="reset" class="col-3 btn btn-success ml-3">Reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card card-body">
+            <div class="jumbotron">
+                <h1 class="display-4">Library</h1>
+                <button type="button" data-toggle="collapse" data-target="#collapseNewBook" aria-expanded="false"
+                    aria-controls="collapseNewBook" class=" mt-5 btn btn-success">Add a New Book</button>
+                    <hr class="my-4">
+                <div class="row">
+                    <div class="col">Harry Potter and the Philosopher's Stone</div>
+                    <button type="button" data-toggle="collapse" data-target="#collapsePhilosopher"
+                        aria-expanded="false" aria-controls="collapsePhilosopher"
+                        class="col-3 mr-2 btn btn-success">show details</button>
+    
+                    <button class="col-2 ml-2 btn btn-success">remove</button>
+                </div>
+                <div class="collapse mt-4" id="collapsePhilosopher">
+                    <form>
+                        <div class="row mt-2">
+                            <div class="col">Author:</div>
+                            <div class="col">J. K. Rowling</div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col">Number of pages:</div>
+                            <div class="col">223</div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6">You've read this book.</div>
+                            <button class="col-2 btn btn-success" type="button">Change</button>
+                        </div>
+                    </form>
+                </div>
+                <hr class="my-4">
+                <div class="row">
+                    <div class="col">Harry Potter and the Chamber of Secrets</div>
+                    <button type="button" data-toggle="collapse" data-target="#collapseChamber"
+                        aria-expanded="false" aria-controls="collapseChamber"
+                        class="col-3 mr-2 btn btn-success">show details</button>
+    
+                    <button class="col-2 ml-2 btn btn-success">remove</button>
+                </div>
+                <div class="collapse mt-4" id="collapseChamber">
+                    <form>
+                        <div class="row mt-2">
+                            <div class="col">Author:</div>
+                            <div class="col">J. K. Rowling</div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col">Number of pages:</div>
+                            <div class="col">251</div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-6">You've read this book.</div>
+                            <button class="col-2 btn btn-success" type="button">Change</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let myLibrary = [];
+
+        // function Book() {
+        //     // the constructor...
+        // }
+
+        // function addBookToLibrary() {
+        //     let book = prompt('Add book to library.');
+        //     if (book == '' || book == null) {
+        //     alert( 'Canceled' );
+        //     }
+        // }
+        // addBookToLibrary();
+    </script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
 </html>
