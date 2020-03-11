@@ -15,124 +15,163 @@
 <body>
 
     <div class="container">
-        
+
         <div class="collapse" id="collapseNewBook">
-            <form class="jumbotron">
+            <form class="jumbotron" id="addForm">
                 <div class="form-group row">
-                    <label for="inputAuthor" class="col-sm-2 col-form-label">Author</label>
-                    <div class="col-sm-10">
+                    <label for="inputAuthor" class="col-3 col-md-2 col-form-label">Author</label>
+                    <div class="col col-md-10">
                         <input type="text" class="form-control" id="inputAuthor">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
-                    <div class="col-sm-10">
+                    <label for="inputTitle" class="col-3 col-md-2 col-form-label">Title</label>
+                    <div class="col col-md-10">
                         <input type="text" class="form-control" id="inputTitle">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="inputNumberOfPages" class="col-sm-3 col-form-label">Number of pages</label>
-                    <div class="col-sm-2">
-                        <input type="number" class="form-control" id="NumberOfPages" min="20">
+                    <label for="inputNumberOfPages" class="col-8 col-md-3 col-form-label">Number of pages</label>
+                    <div class="col col-md-2">
+                        <input type="number" class="form-control" id="inputNumberOfPages" min="20">
                     </div>
                 </div>
-
                 <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">Have you read this book?</label>
+                    <label class="col col-md-4 col-form-label">Have you read this book?</label>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                            value="option1">
+                            value="You've read this book">
                         <label class="form-check-label" for="inlineRadio1">Yes</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                            value="option2">
+                            value="Not read yet">
                         <label class="form-check-label" for="inlineRadio2">No</label>
                     </div>
                 </div>
-
-
                 <div class="form-group">
-                    <div class="col-sm-10 row">
-                        <button type="submit" class="col-3 btn btn-success mr-3">Submit</button>
-                        <button type="reset" class="col-3 btn btn-success ml-3">Reset</button>
+                    <div class="col-sm row">
+                        <input type="button" id="submit" value="Submit" class="col col-md-3 btn btn-success mr-3"
+                            data-toggle="collapse" data-target="#collapseNewBook" aria-expanded="false"
+                            aria-controls="collapseNewBook">
+                        <input type="button" value="Reset form" onclick="resetForm()"
+                            class="col col-md-3 btn btn-success ml-3">
                     </div>
                 </div>
             </form>
         </div>
-        <div class="card card-body">
-            <div class="jumbotron">
+        <div class="card card-body p-0 p-sm-3">
+            <div class="jumbotron" id="library">
                 <h1 class="display-4">Library</h1>
                 <button type="button" data-toggle="collapse" data-target="#collapseNewBook" aria-expanded="false"
                     aria-controls="collapseNewBook" class=" mt-5 btn btn-success">Add a New Book</button>
-                    <hr class="my-4">
-                <div class="row">
-                    <div class="col">Harry Potter and the Philosopher's Stone</div>
-                    <button type="button" data-toggle="collapse" data-target="#collapsePhilosopher"
-                        aria-expanded="false" aria-controls="collapsePhilosopher"
-                        class="col-3 mr-2 btn btn-success">show details</button>
-    
-                    <button class="col-2 ml-2 btn btn-success">remove</button>
-                </div>
-                <div class="collapse mt-4" id="collapsePhilosopher">
-                    <form>
-                        <div class="row mt-2">
-                            <div class="col">Author:</div>
-                            <div class="col">J. K. Rowling</div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col">Number of pages:</div>
-                            <div class="col">223</div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-6">You've read this book.</div>
-                            <button class="col-2 btn btn-success" type="button">Change</button>
-                        </div>
-                    </form>
-                </div>
                 <hr class="my-4">
-                <div class="row">
-                    <div class="col">Harry Potter and the Chamber of Secrets</div>
-                    <button type="button" data-toggle="collapse" data-target="#collapseChamber"
-                        aria-expanded="false" aria-controls="collapseChamber"
-                        class="col-3 mr-2 btn btn-success">show details</button>
-    
-                    <button class="col-2 ml-2 btn btn-success">remove</button>
-                </div>
-                <div class="collapse mt-4" id="collapseChamber">
-                    <form>
-                        <div class="row mt-2">
-                            <div class="col">Author:</div>
-                            <div class="col">J. K. Rowling</div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col">Number of pages:</div>
-                            <div class="col">251</div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-6">You've read this book.</div>
-                            <button class="col-2 btn btn-success" type="button">Change</button>
-                        </div>
-                    </form>
-                </div>
             </div>
         </div>
     </div>
 
     <script>
-        let myLibrary = [];
+        let arr = [];
+        let submit = document.querySelector('#submit');
+        let author = document.querySelector('#inputAuthor');
+        let title = document.querySelector("#inputTitle");
+        let numOfPages = document.querySelector("#inputNumberOfPages");
+        let inlineRadio1 = document.querySelector('#inlineRadio1');
+        let inlineRadio2 = document.querySelector('#inlineRadio2');
+        let reset = document.querySelector('#reset');
+        let addForm = document.querySelector('#addForm');
+        let newLine;
+        let library = document.querySelector('#library');
 
-        // function Book() {
-        //     // the constructor...
-        // }
+        function resetForm() {
+            addForm.reset();
+        }
 
-        // function addBookToLibrary() {
-        //     let book = prompt('Add book to library.');
-        //     if (book == '' || book == null) {
-        //     alert( 'Canceled' );
-        //     }
-        // }
-        // addBookToLibrary();
+        submit.addEventListener('click', () => {
+            if (inlineRadio1.checked) {
+                arr.push(new Book(title.value, author.value, numOfPages.value, inlineRadio1.value));
+            } else if (inlineRadio2.checked) {
+                arr.push(new Book(title.value, author.value, numOfPages.value, inlineRadio2.value));
+            } else if (!(inlineRadio1.checked && inlineRadio2.checked)) {
+                console.log("Have you read this book?");
+            }
+
+            putsBookInLibrary();
+
+            resetForm();
+        });
+
+        function Book(title, author, pages, haveRead) {
+            this.title = title
+            this.author = author
+            this.pages = pages
+            this.readen = haveRead
+            this.info = function () {
+                return `${title} by ${author}, ${pages} pages, ${haveRead}.`
+            }
+        }
+
+        function putsBookInLibrary() {
+            newLine = document.createElement('div');
+            newLine.innerHTML = `<div class="row" name="${arr[arr.length - 1].title}">
+                    <div class="col-12 col-md mb-4">${arr[arr.length - 1].title}</div>
+                    <button type="button" data-toggle="collapse" data-target="#${arr[arr.length - 1].title.split(/\s/).join('').replace("'", "")}"
+                        aria-expanded="false" aria-controls="${arr[arr.length - 1].title.split(/\s/).join('').replace("'", "")}"
+                        class="col col-md-3 mr-2 btn btn-success">show details</button>
+
+                    <button class="col col-md-2 ml-2 btn btn-success" onclick="removeBook(this)">remove</button>
+                </div>
+                <div class="collapse mt-4" id="${arr[arr.length - 1].title.split(/\s/).join('').replace("'", "")}">
+                    <form>
+                        <div class="row mt-2">
+                            <div class="col">Author:</div>
+                            <div class="col">${arr[arr.length - 1].author}</div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col">Number of pages:</div>
+                            <div class="col">${arr[arr.length - 1].pages}</div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col col-md-6">${arr[arr.length - 1].readen}</div>
+                            <button class="col col-md-2 btn btn-success" onclick="changeReadStatus(this)" type="button">Change</button>
+                        </div>
+                    </form>
+                </div>
+                <hr class="my-4">`
+
+            library.appendChild(newLine);
+        }
+
+        function removeBook(element) {
+            library.removeChild(element.parentElement.parentElement);
+
+            arr.forEach(book => {
+                if (element.parentElement.attributes.name.value === book.title) {
+                    arr.splice(arr.indexOf(book), 1);
+                }
+            });
+            console.log(arr);
+        }
+
+        function changeReadStatus(element) {
+
+            if (element.parentElement.firstElementChild.innerHTML === "You've read this book") {
+                element.parentElement.firstElementChild.innerHTML = "Not read yet";
+            } else {
+                element.parentElement.firstElementChild.innerHTML = "You've read this book";
+            }
+
+            arr.forEach(book => {
+                if (element.parentElement.parentElement.parentElement.parentElement.firstElementChild.attributes.name.value === book.title) {
+                    if (book.readen === "You've read this book") {
+                        book.readen = "Not read yet";
+                    } else {
+                        book.readen = "You've read this book";
+                    }
+                }
+            });
+        }
+
     </script>
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
