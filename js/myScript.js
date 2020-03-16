@@ -32,10 +32,7 @@ function Book(title, author, pages, haveRead) {
     this.title = title
     this.author = author
     this.pages = pages
-    this.readen = haveRead
-    this.info = function () {
-        return `${title} by ${author}, ${pages} pages, ${haveRead}.`
-    }
+    this.haveRead = haveRead
 }
 
 function putsBookInLibrary() {
@@ -59,7 +56,7 @@ function putsBookInLibrary() {
                             <div class="col">${arr[arr.length - 1].pages}</div>
                         </div>
                         <div class="row mt-4">
-                            <div class="col col-md-6">${arr[arr.length - 1].readen}</div>
+                            <div class="col col-md-6">${arr[arr.length - 1].haveRead}</div>
                             <button class="col col-md-2 btn btn-success" onclick="changeReadStatus(this)" type="button">Change</button>
                         </div>
                     </form>
@@ -90,10 +87,10 @@ function changeReadStatus(element) {
 
     arr.forEach(book => {
         if (element.parentElement.parentElement.parentElement.parentElement.firstElementChild.attributes.name.value === book.title) {
-            if (book.readen === "You've read this book") {
-                book.readen = "Not read yet";
+            if (book.haveRead === "You've read this book") {
+                book.haveRead = "Not read yet";
             } else {
-                book.readen = "You've read this book";
+                book.haveRead = "You've read this book";
             }
         }
     });
